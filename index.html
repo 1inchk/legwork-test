@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tic Tac Toe</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Tic Tac Toe</h1>
+
+    <fieldset class="mode">
+      <legend>Mode</legend>
+      <label><input type="radio" name="mode" value="ai" checked> vs Computer</label>
+      <label><input type="radio" name="mode" value="pvp"> 2 Players</label>
+    </fieldset>
+
+    <p id="status" class="status" role="status" aria-live="polite">Your turn (X)</p>
+
+    <div id="board" class="board" role="group" aria-label="Tic tac toe board"></div>
+
+    <dl class="score" aria-label="Score">
+      <div><dt>X</dt><dd id="score-X">0</dd></div>
+      <div><dt>Draws</dt><dd id="score-draw">0</dd></div>
+      <div><dt>O</dt><dd id="score-O">0</dd></div>
+    </dl>
+
+    <div class="actions">
+      <button type="button" id="restart">New game</button>
+      <button type="button" id="reset-score" class="secondary">Reset score</button>
+    </div>
+  </main>
+
+  <script src="game.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

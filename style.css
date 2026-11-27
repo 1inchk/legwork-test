@@ -1,0 +1,97 @@
+:root {
+  --bg: #0f172a;
+  --panel: #1e293b;
+  --text: #f1f5f9;
+  --muted: #cbd5e1;
+  --x: #38bdf8;
+  --o: #fb923c;
+  --win: #22c55e;
+  --focus: #facc15;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  color: var(--text);
+}
+
+main {
+  width: min(92vw, 26rem);
+  padding: 1.5rem;
+  text-align: center;
+}
+
+h1 { margin: 0 0 1rem; font-size: 2rem; letter-spacing: 0.05em; }
+
+.mode {
+  border: 1px solid #334155;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 0.5rem 1rem 0.75rem;
+}
+.mode legend { color: var(--muted); padding: 0 0.4rem; }
+.mode label { cursor: pointer; }
+
+.status { min-height: 1.5em; font-size: 1.15rem; font-weight: 600; }
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.cell {
+  aspect-ratio: 1;
+  font: inherit;
+  font-size: clamp(2.5rem, 14vw, 4rem);
+  font-weight: 800;
+  background: var(--panel);
+  color: var(--text);
+  border: 2px solid #334155;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+}
+.cell:hover:not([aria-disabled="true"]) { background: #273449; }
+.cell[aria-disabled="true"] { cursor: default; }
+.cell.x { color: var(--x); }
+.cell.o { color: var(--o); }
+.cell.win { border-color: var(--win); background: #14532d; text-decoration: underline; }
+
+button:focus-visible, input:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.score {
+  display: flex;
+  justify-content: space-around;
+  margin: 1.25rem 0;
+}
+.score dt { color: var(--muted); font-size: 0.9rem; }
+.score dd { margin: 0; font-size: 1.5rem; font-weight: 700; }
+
+.actions { display: flex; gap: 0.75rem; justify-content: center; }
+.actions button {
+  font: inherit;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  border: none;
+  background: var(--x);
+  color: #0f172a;
+  font-weight: 700;
+  cursor: pointer;
+}
+.actions button.secondary { background: transparent; color: var(--text); border: 1px solid #475569; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
