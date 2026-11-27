@@ -18,7 +18,7 @@ then visit <http://localhost:8000>.
 
 ## Test
 
-The game logic lives in `game.js` and is tested with Node's built-in runner (Node 18+):
+The game logic lives in `game.js` (tested in `game.test.js`). The page controller `app.js` is tested in `app.test.js` against a small fake DOM. Both run with Node's built-in runner (Node 18+):
 
 ```bash
 node --test

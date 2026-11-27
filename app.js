@@ -13,6 +13,7 @@
   const AI = "O";
   const score = { X: 0, O: 0, draw: 0 };
   let board, current, over;
+  let aiTimer = null;
 
   const mode = () => document.querySelector('input[name="mode"]:checked').value;
 
@@ -87,7 +88,9 @@
     if (mode() === "ai" && current === AI) return;
     move(i);
     if (!over && mode() === "ai" && current === AI) {
-      setTimeout(() => {
+      aiTimer = setTimeout(() => {
+        aiTimer = null;
+        if (over || mode() !== "ai" || current !== AI) return;
         move(bestMove(board, AI));
         const firstEmpty = cells.find((c) => c.getAttribute("aria-disabled") === "false");
         if (firstEmpty && !boardEl.contains(document.activeElement)) firstEmpty.focus();
@@ -104,6 +107,11 @@
   }
 
   function newGame() {
+    // Cancel a pending computer move so it cannot land on the fresh board.
+    if (aiTimer !== null) {
+      clearTimeout(aiTimer);
+      aiTimer = null;
+    }
     board = Array(9).fill(null);
     current = "X";
     over = false;
